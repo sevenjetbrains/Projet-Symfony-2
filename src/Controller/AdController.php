@@ -47,7 +47,7 @@ class AdController extends AbstractController
                 $image->setAd($ad);
                 $manager->persist($image);
             }
-
+            $ad->setAuthor($this->getUser());
             $manager->persist($ad);
             $manager->flush();
 
@@ -69,7 +69,7 @@ class AdController extends AbstractController
      * @return Reponse
 
      */
-    public function edit(Ad $ad, Request $request,ObjectManager $manager)
+    public function edit(Ad $ad, Request $request, ObjectManager $manager)
     {
 
         $form = $this->createForm(AdType::class, $ad);
