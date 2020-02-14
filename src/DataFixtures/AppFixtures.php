@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Ad;
 use App\Entity\Image;
+use App\Entity\Role;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -22,6 +23,22 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('FR-fr');
+        $adminRole = new Role();
+        $adminRole->setTitle('ROLE_ADMIN');
+
+        $manager->persist($adminRole);
+        $adminUser=new User();
+        $adminUser->setfirstName('Mank')
+            ->setLastName('Ali')
+            ->setEmail('Mank@ali.fr')
+            ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+            ->setPicture('https://avatars.io/twitter/LiiorC')
+            ->setIntroduction($faker->sentence())
+            ->setDescritption('<p>' . join('<p></p>', $faker->paragraphs(3)) . '</p>')
+            ->addUserRole($adminRole);
+        $manager->persist($adminUser);
+
+//Nous gérons lesitilisateurs
         $users = [];
         $genres = ['male', 'female'];
         //nous gérons les utilisateurs
@@ -32,7 +49,7 @@ class AppFixtures extends Fixture
             $picture .= ($genre == 'male' ? 'men/' : 'women/') . $pictureId;
             $user = new User();
             $hash = $this->encoder->encodePassword($user, 'password');
-            
+
             $user->setFirstName($faker->firstname($genre))
                 ->setLastName($faker->lastname)
                 ->setEmail($faker->email)
