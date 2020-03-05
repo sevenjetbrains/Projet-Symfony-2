@@ -60,6 +60,44 @@
 					</a>
 				</div>
 
+<hr>
+{% if ad.comments | length > 0 %}
+<h2 class="mb-3">Commentaires de nos voyageurs :</h2>
+<div class="alert alert-info">
+<h4 class="alert-heading text-center"> 
+<div class="row align-items-center">
+<div class="col">
+Note globale donnée par nos voyageurs
+
+</div>
+<div class="col">
+{% include 'partials/rating.html.twig' with {'rating':ad.avgRatings} %}
+<br>
+<small>(Calculée sur {{ad.comments | length }} avis !)</small>
+</div>
+
+</div>
+ </h4>
+
+</div>
+{% for comment in ad.comments %}
+<div class="bg-light rounded mb-3 py-3 px-3">
+<strong>{{comment.author.firstName}}</strong> a dit:
+<blockquote>
+{{comment.content}}
+</blockquote>
+<strong>Note donnée :</strong> 
+ 
+{% include 'partials/rating.html.twig' with { 'rating':comment.rating } %}
+</div>
+	
+{% endfor %}
+{% else %}
+<h2>Cette annonce n'a pas encore recu de commentaires ...</h2>
+
+	
+
+{% endif %}
 
 			</div>
 
@@ -72,6 +110,7 @@
 							<img src="{{a.picture}}" class="avatar avatar-medium" alt="Avatar de {{a.FullName}}">
 						</a>
 					</div>
+
 					<div class="col">
 						<a href="{{path('user_show',{'slug':a.slug})}}">
 							<h3>{{a.getFullName}}</h3>
