@@ -63,7 +63,9 @@ class BookingController extends AbstractController
     public function show(Booking $booking,Request $request,ObjectManager $manager)
     {
         $comment = new Comment();
-        $form=$this->createForm(CommentType::class,$comment);
+        $form=$this->createForm(CommentType::class,$comment,[
+            
+        ]);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
