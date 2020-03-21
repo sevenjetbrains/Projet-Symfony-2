@@ -35,14 +35,21 @@
 
 		</div>
 		<div class="alert alert-success clearfix">
-		<h2 class="alert-heading">Souvgarder mon annonce</h2>
+			<h2 class="alert-heading">Souvgarder mon annonce</h2>
 			<p>Vous etez sur le point de céer votre annonce nous somme fier de vous !</p>
 
-			<button type="submit" class="btn btn-primary float-right"><i class="fas fa-chek"></i> Céer la nouvelle annonce</button>
+			<button type="submit" class="btn btn-primary float-right">
+				<i class="fas fa-chek"></i>
+				Céer la nouvelle annonce</button>
 		</div>
 	</div>
 
 
 	{{ form_end(form) }}
-</div>{% endblock %}{% block javascripts %}
-<script src="/js/ad.js"></script>{% endblock %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+ {{ parent() }}
+    {{ encore_entry_script_tags('ad') }}
+{% endblock %}

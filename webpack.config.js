@@ -24,6 +24,10 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('ad', './assets/js/ad.js')
+    .addEntry('datejs', './assets/js/bootstrap-datepicker.min.js')
+    //.addEntry('css/app', './assets/css/app.scss')
+    //.addEntry('css/bootstrap', './assets/css/bootstrap.min.css')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -44,7 +48,7 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
-    // enables hashed filenames (e.g. app.abc123.css)
+    // enables hashed filenames (e.g. app.abc123.css) 
     .enableVersioning(Encore.isProduction())
 
     // enables @babel/preset-env polyfills
@@ -54,7 +58,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -64,7 +68,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()

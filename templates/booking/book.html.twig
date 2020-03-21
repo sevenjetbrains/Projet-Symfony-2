@@ -4,8 +4,8 @@
 	{{ad.title}}
 {% endblock %}
 {% block stylesheets %}
-	<link rel="stylesheet" href="/css/bootstrap-datepicker.min.css"/>
-
+	<!-- <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css"/> -->
+ {{ encore_entry_link_tags('app') }}
 
 {% endblock %}
 
@@ -45,7 +45,16 @@
 	</div>
 {% endblock %}
 {% block javascripts %}
-	<script src="/js/bootstrap-datepicker.min.js"></script>
+	<!-- <script src="/js/bootstrap-datepicker.min.js"></script> -->
+
+			{{ parent() }}
+			{{ encore_entry_script_tags('datejs') }}
+			
+			
+
+
+
+
 	<script>
 		$(document).ready(function () {
 $('#booking_startDate,#booking_endDate').datepicker({
